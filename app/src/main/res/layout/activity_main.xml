@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/btnSave"
+        android:layout_marginTop="20dp" />
+
+    <Button
+        android:id="@+id/btnProcessImage"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Process Image" />
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="0dp"
+        android:layout_toRightOf="@id/btnProcessImage"
+        android:text="Save" />
+
+    <Button
+        android:id="@+id/btnGoToVideo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go to Video Page"
+        android:layout_below="@+id/imageView"
+        android:layout_marginTop="20dp"/>
+
+
+
+
+</RelativeLayout>
