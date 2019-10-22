@@ -35,7 +35,7 @@ public class BitmapToVideoEncoder {
     private static int mWidth;
     private static int mHeight;
     private static final int BIT_RATE = 16000000;
-    private static final int FRAME_RATE = 30; // Frames per second
+    private static final int FRAME_RATE = 25; // Frames per second
 
     private static final int I_FRAME_INTERVAL = 1;
 
@@ -68,6 +68,7 @@ public class BitmapToVideoEncoder {
         String outputFileString;
         try {
             outputFileString = outputFile.getCanonicalPath();
+            Log.e(TAG, "output file path: " + outputFileString);
         } catch (IOException e) {
             Log.e(TAG, "Unable to get path for " + outputFile);
             return;
