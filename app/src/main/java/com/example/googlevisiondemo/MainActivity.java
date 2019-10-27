@@ -60,14 +60,14 @@ public class MainActivity extends AppCompatActivity {
         bClient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openVideoActivity();
+                openClientActivity();
             }
         });
         bServer = (Button)findViewById(R.id.bServer);
         bServer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openVideoActivity();
+                openServerActivity();
             }
         });
         bImage = (Button)findViewById(R.id.bImage);
@@ -97,6 +97,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void openClientActivity() {
+        Intent intent = new Intent(this, ClientActivity.class);
+        startActivity(intent);
+    }
+
+    private void openServerActivity() {
+        Intent intent = new Intent(this, ServerActivity.class);
+        startActivity(intent);
+    }
 
     private void openVideoActivity() {
         Intent intent = new Intent(this, VideoActivity.class);

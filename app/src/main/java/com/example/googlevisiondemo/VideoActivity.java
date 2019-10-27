@@ -25,8 +25,10 @@ import android.view.SurfaceHolder;
 import android.view.TextureView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.face.Face;
@@ -50,7 +52,7 @@ public class VideoActivity extends AppCompatActivity {
 
     private String selectedFilePath;
 
-    TextureView textureView;
+    VideoView videoView;
     TextView textView;
     Button btnSelectVideo;
     Button btnProcessVideo;
@@ -65,10 +67,14 @@ public class VideoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video);
 
-        textureView = (TextureView) findViewById(R.id.textureView);
+        videoView = (VideoView) findViewById(R.id.videoView);
         textView = (TextView) findViewById(R.id.textView);
         btnSelectVideo = (Button) findViewById(R.id.btnSelectVideo);
         btnProcessVideo = (Button) findViewById(R.id.btnProcessVideo);
+
+        MediaController mediaController = new MediaController(this);
+        videoView.setMediaController(mediaController);
+        mediaController.setAnchorView(videoView);
 
 //        surfaceHolder = surfaceView.getHolder();
 //        surfaceHolder.addCallback(VideoActivity.this);
@@ -183,7 +189,6 @@ public class VideoActivity extends AppCompatActivity {
 //                    encoder.finish();
 
                 Toast.makeText(getApplicationContext(), "Process Complete", Toast.LENGTH_SHORT).show();
-
             }
         });
 
@@ -199,6 +204,7 @@ public class VideoActivity extends AppCompatActivity {
                     Uri uri = data.getData();
                     selectedFilePath = getPath(uri);
                     textView.setText(selectedFilePath);
+                    videoView.setVideoURI(uri);
                 }
                 break;
         }
@@ -237,4 +243,6 @@ public class VideoActivity extends AppCompatActivity {
         String timestamp = sdf.format(new Date());
         return timestamp + ".mp4";
     }
+
+
 }

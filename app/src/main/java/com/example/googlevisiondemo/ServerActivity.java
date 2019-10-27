@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,15 +31,14 @@ public class ServerActivity extends AppCompatActivity {
 
     private String selectedFilePath;
 
-    TextView textView;
-    Button bStartServer;
-    Button bSelect;
-    Button bDecrypt;
+    EditText ipAddress;
+    TextView textView, ipTextView;
+    Button bStartServer, bSelect, bDecrypt, bEnter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_server);
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
                 ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
@@ -109,7 +109,6 @@ public class ServerActivity extends AppCompatActivity {
                 if (resultCode == RESULT_OK) {
                     selectedFilePath = data.getData().getPath();
                     textView.setText(selectedFilePath);
-                    System.out.println(selectedFilePath);
                 }
                 break;
         }

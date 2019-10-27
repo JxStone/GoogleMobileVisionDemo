@@ -30,6 +30,8 @@ import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.googlevisiondemo.client.Client;
@@ -54,7 +56,6 @@ public class ClientActivity extends AppCompatActivity {
     static {
         try {
             SERVER_ADDRESS = InetAddress.getByName("192.168.8.82");
-            //SERVER_ADDRESS = InetAddress.getByName("192.168.0.107");
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
@@ -124,11 +125,9 @@ public class ClientActivity extends AppCompatActivity {
     }
 
 
-    private Button bUploadFile;
-    private Button bSelectFile;
-    private Button bLaunchCamera;
-    private Button bStart;
-    private Button bStop;
+    private Button bUploadFile, bSelectFile, bLaunchCamera, bStart, bStop, bEnter;
+    private TextView ipTextView;
+    private EditText ipAddress;
     Uri videoFileUri = null;
 
 
@@ -144,7 +143,7 @@ public class ClientActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_client);
 
         if (savedInstanceState != null) { // recreate URI
             String fileUriString = savedInstanceState.getString(FILE_URI_KEY);
@@ -163,11 +162,28 @@ public class ClientActivity extends AppCompatActivity {
 
 
         mTextureView = (TextureView) findViewById(R.id.mTextureView);
+        ipTextView = (TextView) findViewById(R.id.ipTextVew);
+        ipAddress = (EditText) findViewById(R.id.ipAddress);
+        bEnter = (Button) findViewById(R.id.bEnter);
         bSelectFile = (Button) findViewById(R.id.bSelectFile);
         bUploadFile = (Button) findViewById(R.id.bUploadFile);
         bLaunchCamera = (Button) findViewById(R.id.bLaunchCamera);
         bStart = (Button) findViewById(R.id.bStart);
         bStop = (Button) findViewById(R.id.bStop);
+
+
+        bEnter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String ip = ipAddress.getText().toString();
+                try {
+                    SERVER_ADDRESS = InetAddress.getByName(ip);
+                } catch (UnknownHostException e) {
+                    e.printStackTrace();
+                }
+                ipTextView.setText(ip);
+            }
+        });
 
 
         bSelectFile.setOnClickListener(new View.OnClickListener() {
