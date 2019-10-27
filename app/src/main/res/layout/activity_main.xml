@@ -10,37 +10,44 @@
     android:paddingTop="16dp"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/btnSave"
-        android:layout_marginTop="20dp" />
-
     <Button
-        android:id="@+id/btnProcessImage"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:text="Process Image" />
-
-    <Button
-        android:id="@+id/btnSave"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="80dp"
-        android:layout_marginTop="0dp"
-        android:layout_toRightOf="@id/btnProcessImage"
-        android:text="Save" />
-
-    <Button
-        android:id="@+id/btnGoToVideo"
+        android:id="@+id/bClient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Go to Video Page"
-        android:layout_below="@+id/imageView"
+        android:text="Client"
         android:layout_marginTop="20dp"/>
 
+    <Button
+        android:id="@+id/bServer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Server"
+        android:layout_below="@+id/bClient"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/bImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Image"
+        android:layout_below="@+id/bServer"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/bVideo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Video Anonymization"
+        android:layout_below="@+id/bImage"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/bFaceTracker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Face Tracker"
+        android:layout_below="@+id/bVideo"
+        android:layout_marginTop="20dp"/>
 
 
 
