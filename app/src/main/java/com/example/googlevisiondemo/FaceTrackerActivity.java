@@ -34,6 +34,7 @@ import android.util.Size;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -62,6 +63,7 @@ public class FaceTrackerActivity extends AppCompatActivity {
 
     private ImageButton mRecordVideoButton;
     private ImageButton mTakeImageButton;
+    private TextView mCount;
 
     private boolean mIsRecording = false;
 
@@ -82,6 +84,8 @@ public class FaceTrackerActivity extends AppCompatActivity {
     private static final int RC_HANDLE_CAMERA_PERM = 2;
     private  static final int REQUEST_WRITE_EXTERNAL_STORAGE_PERMISSION_RESULT = 0;
 
+    private int faceCount = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,6 +96,7 @@ public class FaceTrackerActivity extends AppCompatActivity {
         mMediaRecorder = new MediaRecorder();
 
         mPreview = (CameraSourcePreview) findViewById(R.id.preview);
+        mCount = (TextView) findViewById(R.id.Count);
         mGraphicOverlay = (GraphicOverlay) findViewById(R.id.faceOverlay);
         mRecordVideoButton = (ImageButton) findViewById(R.id.videoOnlineImageButton);
         mRecordVideoButton.setOnClickListener(new View.OnClickListener() {
@@ -194,7 +199,7 @@ public class FaceTrackerActivity extends AppCompatActivity {
 
         mCameraSource = new CameraSource.Builder(context, detector)
                 .setRequestedPreviewSize(640, 480)
-                .setFacing(CameraSource.CAMERA_FACING_FRONT)
+                .setFacing(CameraSource.CAMERA_FACING_BACK)
                 .setRequestedFps(30.0f)
                 .build();
     }
@@ -354,6 +359,13 @@ public class FaceTrackerActivity extends AppCompatActivity {
         @Override
         public void onNewItem(int faceId, Face item) {
             mFaceGraphic.setId(faceId);
+            faceCount+=1;
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mCount.setText("Face Detected: " + faceCount);
+                }
+            });
         }
 
         /**
@@ -381,6 +393,7 @@ public class FaceTrackerActivity extends AppCompatActivity {
          */
         @Override
         public void onDone() {
+            faceCount-=1;
             mOverlay.remove(mFaceGraphic);
         }
     }
@@ -501,4 +514,6 @@ public class FaceTrackerActivity extends AppCompatActivity {
         canvas.drawBitmap(overlay, overlayRect, faceRect, null);
         return newBitmap;
     }
+
+
 }
